@@ -29,17 +29,18 @@ namespace PetsAPI.Services
 
         public async Task<IEnumerable<DogDetails>> Get(BaseRequest req)
         {
-            var dogs = await _dogHttpClient.GetDog(req);
+            var dogs = await _dogHttpClient.Get(req);
             return dogs;
         }
 
-        public async Task<ImageResponse> GetBreedImage(string breed_id)
+        public async Task<IEnumerable<Image>> GetImageList(BaseRequest req)
         {
-            var dogs = await _dogHttpClient.GetImage(breed_id);
-            return dogs;
+            var dog = await _dogHttpClient.GetImageList(req);
+            var dogImageMap = _mapper.Map<Image[]>(dog);
+            return dogImageMap;
         }
 
-        public async Task<ImageResponse> GetImage(string image_id)
+        public async Task<ImageDetails> GetImage(string image_id)
         {
             var dogs = await _dogHttpClient.GetImage(image_id);
             return dogs;

@@ -32,6 +32,7 @@ namespace PetsAPI.Services
 
         public async Task<Tuple<IEnumerable<PetDetails>, PaginationMetadata>> Get(BaseRequest req)
         {
+            req.has_breeds = true;
             var dogs = await _dogService.Get(req);
             var cats = await _catService.Get(req);
 
@@ -53,19 +54,34 @@ namespace PetsAPI.Services
 
 
 
-        public async Task<IEnumerable<Image>> GetBreedImage(string breed_id)
+        public async Task<Tuple<IEnumerable<Image>, PaginationMetadata>>  GetImageList(string breed_id, BaseRequest req)
         {
-            var dogs = await _dogService.GetBreedImage(breed_id);
-           //var cats = await _catService.GetBreedImage(req);
+
+            if (!string.IsNullOrEmpty(breed_id))
+            {
+                req.breed_id = breed_id;
+            }
+
+           var dogBreeds = await _dogService.GetImageList(req);
+           var catBreeds = await _catService.GetImageList(req);
+
+            var dogMapImage = _mapper.Map<Image[]>(dogBreeds);
+            var catMapImage = _mapper.Map<Image[]>(catBreeds);
 
 
-            var dogMap = _mapper.Map<Image[]>(dogs);
             //var catMap = _mapper.Map<PetDetails[]>(cats);
-            var pets = new List<Image>(dogMap.Concat(dogMap)).OrderBy(p => p.id);
+            var pets = new List<Image>(dogMapImage.Concat(catMapImage)).OrderBy(p => p.id);
+
+            var paginationMetadata = new PaginationMetadata(pets.Count(), req.Page, req.Limit);
+
+            var filteredPets = pets
+                .Skip((req.Page - 1) * req.Limit)
+                .Take(req.Limit);
+
+            var result = Tuple.Create(filteredPets, paginationMetadata);
 
 
-
-            return pets;
+            return result;
         }
 
 

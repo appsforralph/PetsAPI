@@ -34,7 +34,14 @@ namespace PetsAPI.Services
             return cats;
         }
 
-        public async Task<ImageResponse> GetImage(string image_id)
+        public async Task<IEnumerable<Image>> GetImageList(BaseRequest req)
+        {
+            var cats = await _catHttpClient.Get(req);
+            var catImageMap = _mapper.Map<Image[]>(cats);
+            return catImageMap;
+        }
+
+        public async Task<ImageDetails> GetImage(string image_id)
         {
             var cat = await _catHttpClient.GetImage(image_id);
             return cat;

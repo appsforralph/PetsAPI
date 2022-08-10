@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 
 namespace PetsAPI.Common.Model
 {
-    public class BaseResponse
+    public class BaseResponse<T>
     {
         public int page { get; set; }
         public int limit { get; set; }
-        public IEnumerable<PetDetails> results { get; set; }
+        public T results { get; set; }
     }
 }

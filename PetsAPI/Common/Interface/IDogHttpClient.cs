@@ -8,8 +8,10 @@ namespace PetsAPI.Common.Interface
 {
     public interface IDogHttpClient
     {
-        Task<List<DogDetails>> GetDog(BaseRequest req);
-        Task<DogDetails> GetBreed(string breed_id);
-        Task<ImageResponse> GetImage(string image_id);
+        Task<List<DogDetails>> Get(BaseRequest req);
+
+        Task<List<ImageDetails>> GetImageList(BaseRequest req);
+
+        Task<ImageDetails> GetImage(string image_id);
     }
 }

@@ -9,6 +9,7 @@ namespace PetsAPI.Common.Interface
     public interface ICatService
     {
         Task<IEnumerable<CatDetails>> Get(BaseRequest req);
-        Task<ImageResponse> GetImage(string image_id);
+        Task<IEnumerable<Image>> GetImageList(BaseRequest req);
+        Task<ImageDetails> GetImage(string image_id);
     }
 }

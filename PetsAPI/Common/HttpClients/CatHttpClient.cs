@@ -31,6 +31,11 @@ namespace PetsAPI.Common.HttpClients
             try
             {
                 var requestUrl = "v1/images/search?has_breeds=true&page=" + req.Page + "&limit=" + req.Limit;
+
+                if (!String.IsNullOrEmpty(req.breed_id))
+                {
+                    requestUrl = string.Format("{0}&breed_id={1}", requestUrl, req.breed_id);
+                }
                 var response = await _client.GetAsync(requestUrl);
 
                 response.EnsureSuccessStatusCode();
@@ -48,7 +53,7 @@ namespace PetsAPI.Common.HttpClients
             }
         }
 
-        public async Task<ImageResponse> GetImage(string image_id)
+        public async Task<ImageDetails> GetImage(string image_id)
         {
             try
             {
@@ -57,7 +62,7 @@ namespace PetsAPI.Common.HttpClients
 
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<ImageResponse>();
+                return await response.Content.ReadAsAsync<ImageDetails>();
             }
             catch (Exception ex)
             {
@@ -65,7 +70,7 @@ namespace PetsAPI.Common.HttpClients
                 _logger.LogDebug(ex.ToString());
 
                 // Return empty.
-                return new ImageResponse();
+                return new ImageDetails();
 
             }
         }

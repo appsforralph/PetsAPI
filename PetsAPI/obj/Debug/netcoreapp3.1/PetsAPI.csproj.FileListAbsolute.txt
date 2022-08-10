@@ -24,7 +24,6 @@ C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Swashbuckle.As
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\obj\Debug\netcoreapp3.1\PetsAPI.csproj.CopyComplete
-C:\Users\rpn\source\repos\PetsAPI\PetsAPI\obj\Debug\netcoreapp3.1\PetsAPI.csproj.AssemblyReference.cache
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
@@ -34,3 +33,4 @@ C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Microsoft.Exte
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 C:\Users\rpn\source\repos\PetsAPI\PetsAPI\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\rpn\source\repos\PetsAPI\PetsAPI\obj\Debug\netcoreapp3.1\PetsAPI.csproj.AssemblyReference.cache

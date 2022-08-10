@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace PetsAPI.Common.Model
 {
-    public class ImageResponse
+    public class ImageDetails
     {
         public string id { get; set; }
         public string url { get; set; }

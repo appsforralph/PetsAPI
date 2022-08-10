@@ -27,11 +27,12 @@ namespace PetsAPI.Common.HttpClients
 
         }
 
-        public async Task<List<DogDetails>> GetDog(BaseRequest req)
+        public async Task<List<DogDetails>> Get(BaseRequest req)
         {
             try
             {
                 var requestUrl = "/v1/breeds?page=" + req.Page + "&limit=" + req.Limit;
+
                 var response = await _client.GetAsync(requestUrl);
 
                 response.EnsureSuccessStatusCode();
@@ -40,7 +41,7 @@ namespace PetsAPI.Common.HttpClients
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occured fetching Dog Breeds from the Dog API, could be un supported parameter or bad url.");
+                _logger.LogError($"An error occured fetching DogDetails from the Dog API, could be un supported parameter or bad url.");
                 _logger.LogDebug(ex.ToString());
 
                 // Return empty.
@@ -48,8 +49,38 @@ namespace PetsAPI.Common.HttpClients
 
             }
         }
+        public async Task<List<ImageDetails>> GetImageList(BaseRequest req)
+        {
+            try
+            {
+                var requestUrl = "v1/images/search?has_breeds=true&page=" + req.Page + "&limit=" + req.Limit;
 
-        public async Task<ImageResponse> GetImage(string image_id)
+                if (!String.IsNullOrEmpty(req.breed_id))
+                {
+                    requestUrl = string.Format("{0}&breed_id={1}", requestUrl, req.breed_id);
+                }
+
+                var response = await _client.GetAsync(requestUrl);
+
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsAsync<List<ImageDetails>>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occured fetching ImageDetails from the Dog API, could be un supported parameter or bad url.");
+                _logger.LogDebug(ex.ToString());
+
+                // Return empty.
+                return new List<ImageDetails>();
+
+            }
+        }
+
+
+
+
+    public async Task<ImageDetails> GetImage(string image_id)
         {
             try
             {
@@ -58,38 +89,15 @@ namespace PetsAPI.Common.HttpClients
 
                 response.EnsureSuccessStatusCode();
 
-                return await response.Content.ReadAsAsync<ImageResponse>();
+                return await response.Content.ReadAsAsync<ImageDetails>();
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occured fetching Dog Breeds from the Dog API, could be un supported parameter or bad url.");
+                _logger.LogError($"An error occured fetching ImageDetails from the Dog API, could be un supported parameter or bad url.");
                 _logger.LogDebug(ex.ToString());
 
                 // Return empty.
-                return new ImageResponse();
-
-            }
-        }
-
-
-        public async Task<DogDetails> GetBreed(string breed_id)
-        {
-            try
-            {
-                var requestUrl = "/v1/breeds?:"+ breed_id;
-                var response = await _client.GetAsync(requestUrl);
-
-                response.EnsureSuccessStatusCode();
-
-                return await response.Content.ReadAsAsync<DogDetails>();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"An error occured fetching Dog Breeds from the Dog API, could be un supported parameter or bad url.");
-                _logger.LogDebug(ex.ToString());
-
-                // Return empty.
-                return new DogDetails();
+                return new ImageDetails();
 
             }
         }
