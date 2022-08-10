@@ -47,5 +47,27 @@ namespace PetsAPI.Common.HttpClients
 
             }
         }
+
+        public async Task<ImageResponse> GetImage(string image_id)
+        {
+            try
+            {
+                var requestUrl = "v1/images/" + image_id;
+                var response = await _client.GetAsync(requestUrl);
+
+                response.EnsureSuccessStatusCode();
+
+                return await response.Content.ReadAsAsync<ImageResponse>();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occured fetching Dog Breeds from the Dog API, could be un supported parameter or bad url.");
+                _logger.LogDebug(ex.ToString());
+
+                // Return empty.
+                return new ImageResponse();
+
+            }
+        }
     }
 }

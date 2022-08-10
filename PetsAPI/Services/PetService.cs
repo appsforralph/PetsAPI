@@ -42,12 +42,48 @@ namespace PetsAPI.Services
 
             var paginationMetadata = new PaginationMetadata(pets.Count(), req.Page, req.Limit);
 
+
             var filteredPets = pets
                 .Skip((req.Page - 1) * req.Limit)
                 .Take(req.Limit);
 
             var result = Tuple.Create(filteredPets, paginationMetadata);
             return result;
+        }
+
+
+
+        public async Task<IEnumerable<Image>> GetBreedImage(string breed_id)
+        {
+            var dogs = await _dogService.GetBreedImage(breed_id);
+           //var cats = await _catService.GetBreedImage(req);
+
+
+            var dogMap = _mapper.Map<Image[]>(dogs);
+            //var catMap = _mapper.Map<PetDetails[]>(cats);
+            var pets = new List<Image>(dogMap.Concat(dogMap)).OrderBy(p => p.id);
+
+
+
+            return pets;
+        }
+
+
+        public async Task<Image> GetImage(string image_id)
+        {
+
+            var combineImageList = new List<Image>();
+
+            var dogs = await _dogService.GetImage(image_id);
+            var cats = await _catService.GetImage(image_id);
+
+            combineImageList.Add(_mapper.Map<Image>(dogs));
+            combineImageList.Add(_mapper.Map<Image>(cats));
+            //combineImageList.Add(cats);
+            //var catMap = _mapper.Map<PetDetails[]>(cats);
+            var pets = combineImageList.Where(i => i.id == image_id).OrderBy(p => p.id);
+
+            return pets.SingleOrDefault();
         }
     }
 }

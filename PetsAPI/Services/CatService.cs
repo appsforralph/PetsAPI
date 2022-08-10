@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Caching.Memory;
+﻿using AutoMapper;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PetsAPI.Common.Interface;
@@ -14,19 +15,29 @@ namespace PetsAPI.Services
     public class CatService : ICatService
     {
         public ICatHttpClient _catHttpClient;
+        public IMapper _mapper;
         public CatService(
             ILogger<CatService> logger,
             IOptions<AppSettings> settings,
             IMemoryCache memoryCache,
-            ICatHttpClient catHttpClient)
+            ICatHttpClient catHttpClient,
+            IMapper mapper
+            )
         {
             _catHttpClient = catHttpClient;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<CatDetails>> Get(BaseRequest req)
         {
             var cats = await _catHttpClient.Get(req);
             return cats;
+        }
+
+        public async Task<ImageResponse> GetImage(string image_id)
+        {
+            var cat = await _catHttpClient.GetImage(image_id);
+            return cat;
         }
     }
 }

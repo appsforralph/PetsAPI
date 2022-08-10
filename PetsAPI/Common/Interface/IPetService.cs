@@ -9,5 +9,8 @@ namespace PetsAPI.Common.Interface
     public interface IPetService
     {
         Task<Tuple<IEnumerable<PetDetails>, PaginationMetadata>> Get(BaseRequest req);
+        Task<IEnumerable<Image>> GetBreedImage(string breed_id);
+        Task<Image> GetImage(string image_id);
+
     }
 }

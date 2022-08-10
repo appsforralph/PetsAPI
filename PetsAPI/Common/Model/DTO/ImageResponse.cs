@@ -7,8 +7,10 @@ namespace PetsAPI.Common.Model
 {
     public class ImageResponse
     {
-        public int page { get; set; }
-        public int limit { get; set; }
-        public List<Image> results {get; set;}
+        public string id { get; set; }
+        public string url { get; set; }
+        public List<Breed> breeds { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace PetsAPI.Common.Model
                     width = src.width
                 }));
 
-            //CreateMap<List<CatDetails>, List<PetDetails>>();
+            CreateMap<ImageResponse, Image>();
 
         }
 

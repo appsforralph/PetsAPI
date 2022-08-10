@@ -40,5 +40,33 @@ namespace PetsAPI.Controllers
 
             return response;
         }
+
+
+        [HttpGet]
+        [Route("breeds/{breed_id}/images")]
+        public async Task<BaseResponse> GetBreedImages(string breed_id, [FromQuery] BaseRequest req)
+        {
+            var pets = await _petService.Get(req);
+            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pets.Item2));
+
+            var response = new BaseResponse()
+            {
+                results = pets.Item1,
+                page = req.Page,
+                limit = req.Limit
+            };
+
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("images/{image_id}")]
+        public async Task<Image> GetImage(string image_id)
+        {
+            var pets = await _petService.GetImage(image_id);
+            return pets;
+        }
+
     }
 }
