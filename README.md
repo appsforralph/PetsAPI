@@ -49,7 +49,9 @@ On initial, it is setup to run on  https://localhost:44301/
 
 Then we could test this in Postman. I have attached the sample request via Postman Collection. Please check in the repository name 'PETsAPI.postman_collection'
 
-Please take note that I have set the parameter 'Limit' to a max of 25 only. Anything that tries above it will default to 25.
+Please take note of the following parameters in making a request
+- limit : I have set the parameter 'Limit' to a max of 25 only. Anything that tries above it will default to 25.
+- x-api-key : This must be present in the request headers. This serves as the simple Authentication for the API
 
 ### Get All Pet details
 ![image](https://user-images.githubusercontent.com/30335870/184064265-b89ee2c7-c8f1-4597-aedb-30b91a3d8bb2.png)
