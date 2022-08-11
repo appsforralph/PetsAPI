@@ -15,6 +15,10 @@ See the examples here:
 
 ![image](https://user-images.githubusercontent.com/30335870/183977703-79b4d8c7-d783-4334-b3ec-7426cadd92f5.png)
 
+### Prerequisite:
+
+- .NET Core 3.1
+- Visual Studio 2019 or greater versions
 
 ## Setting Up
 
@@ -31,21 +35,27 @@ followed by
 $ dotnet restore
 ```
 
-### Prerequisite:
 
-- .NET Core 3.1
-- Visual Studio 2019 or greater versions
 
 ### Running the Project
 Alter first the apiKeys needed. It is located in the appsetting.json
 - apiKey : this for the APIKey authorization of PETSAPI. This is needed in every request.
 - dogapiKey : the apiKey needed by the api https://thedogapi.com/. You can get the api key on the said site.
 - catapiKey : the apiKey needed by the api https://thecatapi.com/. You can get the api key on the said site.
-
-
-On initial, it is setup to run on  https://localhost:44301/
-
+-
 ![image](https://user-images.githubusercontent.com/30335870/184063542-b29a93ad-75d8-453c-bd90-dc2cf340911b.png)
+#### Run via command line
+```sh
+$ dotnet build --configuration Release
+$ dotnet run --project ./PetsAPI/PetsAPI.csproj --urls=https://localhost:44301/
+```
+sample output via command line
+![image](https://user-images.githubusercontent.com/30335870/184070818-1ff79a87-8c7d-4106-be44-891ecfff55b0.png)
+
+#### Run via Visual Studio UI
+On running it via Visual Studio UI, simply click the IIS run button
+![image](https://user-images.githubusercontent.com/30335870/184070490-612158cb-aec6-470f-ade8-e4b4b6dc3bb8.png)
+
 
 Then we could test this in Postman. I have attached the sample request via Postman Collection. Please check in the repository name 'PETsAPI.postman_collection'
 
