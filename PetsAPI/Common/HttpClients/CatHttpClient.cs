@@ -44,7 +44,7 @@ namespace PetsAPI.Common.HttpClients
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occured fetching Dog Breeds from the Cat API, could be un supported parameter or bad url.");
+                _logger.LogError($"An error occured fetching CatDetails from the Cat API, could be un supported parameter or bad url.");
                 _logger.LogDebug(ex.ToString());
 
                 // Return empty.
@@ -66,7 +66,7 @@ namespace PetsAPI.Common.HttpClients
             }
             catch (Exception ex)
             {
-                _logger.LogError($"An error occured fetching Dog Breeds from the Dog API, could be un supported parameter or bad url.");
+                _logger.LogError($"An error occured fetching Cat ImageDetails from the Cat API, could be un supported parameter or bad url.");
                 _logger.LogDebug(ex.ToString());
 
                 // Return empty.

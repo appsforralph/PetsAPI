@@ -16,21 +16,28 @@ namespace PetsAPI.Services
     {
         public IDogHttpClient _dogHttpClient;
         public IMapper _mapper;
-        public DogService(ILogger<DogService> logger,
-            IOptions<AppSettings> settings,
-            IMemoryCache memoryCache,
+        public IMemoryCache _memoryCache;
+        public DogService(IMemoryCache memoryCache,
             IDogHttpClient dogHttpClient,
             IMapper mapper
             )
         {
             _dogHttpClient = dogHttpClient;
             _mapper = mapper;
+            _memoryCache = memoryCache;
         }
 
         public async Task<IEnumerable<DogDetails>> Get(BaseRequest req)
         {
-            var dogs = await _dogHttpClient.Get(req);
-            return dogs;
+            IEnumerable<DogDetails> result;
+            var key = new { req.has_breeds, req.breed_id, req.Limit, req.Page }.GetHashCode();
+
+            if (_memoryCache.TryGetValue(key, out result)) return result;
+
+            result = await _dogHttpClient.Get(req);
+            _memoryCache.Set(key, result, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(10)));
+
+            return result;
         }
 
         public async Task<IEnumerable<Image>> GetImageList(BaseRequest req)

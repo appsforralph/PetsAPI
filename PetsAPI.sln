@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PetsAPI", "PetsAPI\PetsAPI.csproj", "{FABA7652-0464-40B3-BF63-4D62A036C91B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PetsAPI", "PetsAPI\PetsAPI.csproj", "{FABA7652-0464-40B3-BF63-4D62A036C91B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestPetsAPI", "TestPetsAPI\TestPetsAPI.csproj", "{5875E308-F91D-4A7E-913F-C7ED2F9466B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FABA7652-0464-40B3-BF63-4D62A036C91B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FABA7652-0464-40B3-BF63-4D62A036C91B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FABA7652-0464-40B3-BF63-4D62A036C91B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5875E308-F91D-4A7E-913F-C7ED2F9466B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5875E308-F91D-4A7E-913F-C7ED2F9466B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5875E308-F91D-4A7E-913F-C7ED2F9466B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5875E308-F91D-4A7E-913F-C7ED2F9466B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

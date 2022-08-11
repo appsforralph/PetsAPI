@@ -81,8 +81,8 @@ namespace PetsAPI.Controllers
         [Route("images/{image_id}")]
         public async Task<Image> GetImage(string image_id)
         {
-            var pets = await _petService.GetImage(image_id);
-            return pets;
+            var response = await _petService.GetImage(image_id);
+            return response;
         }
 
     }

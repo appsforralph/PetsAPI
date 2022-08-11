@@ -16,9 +16,8 @@ namespace PetsAPI.Services
     {
         public ICatHttpClient _catHttpClient;
         public IMapper _mapper;
+        public IMemoryCache _memoryCache;
         public CatService(
-            ILogger<CatService> logger,
-            IOptions<AppSettings> settings,
             IMemoryCache memoryCache,
             ICatHttpClient catHttpClient,
             IMapper mapper
@@ -26,12 +25,21 @@ namespace PetsAPI.Services
         {
             _catHttpClient = catHttpClient;
             _mapper = mapper;
+            _memoryCache = memoryCache;
         }
 
         public async Task<IEnumerable<CatDetails>> Get(BaseRequest req)
         {
-            var cats = await _catHttpClient.Get(req);
-            return cats;
+            IEnumerable<CatDetails> result;
+            
+            var key = new { req.has_breeds, req.breed_id, req.Limit, req.Page }.GetHashCode();
+
+            if (_memoryCache.TryGetValue(key, out result)) return result;
+
+            result = await _catHttpClient.Get(req);
+            _memoryCache.Set(key, result, new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(10)));
+
+            return result;
         }
 
         public async Task<IEnumerable<Image>> GetImageList(BaseRequest req)
