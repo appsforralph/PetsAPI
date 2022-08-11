@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "d136d87b-0cc7-4a22-8dcd-2a2f155af164",
+		"name": "PETsAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "C .Get All Pets Image List",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "apiKey",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "limit",
+							"value": "5",
+							"type": "default"
+						},
+						{
+							"key": "page",
+							"value": "1",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:44301/v1/images?limit=25&page=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44301",
+					"path": [
+						"v1",
+						"images"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "25"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "B. Get Pet Images filter by Breed",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "apiKey",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44301/v1/breeds/aege/images?limit=25&page=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44301",
+					"path": [
+						"v1",
+						"breeds",
+						"aege",
+						"images"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "25"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "A. Get All Pets",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "apiKey",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44301/v1/breeds?limit=20&page=1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44301",
+					"path": [
+						"v1",
+						"breeds"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "20"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "D. Get Pet Image by ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-api-key",
+						"value": "apiKey",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44301/v1/images/S13yZg5VQ",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44301",
+					"path": [
+						"v1",
+						"images",
+						"S13yZg5VQ"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
