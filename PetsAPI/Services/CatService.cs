@@ -34,6 +34,7 @@ namespace PetsAPI.Services
             
             var key = new { req.has_breeds, req.breed_id, req.Limit, req.Page }.GetHashCode();
 
+            //Added cache set for 10mins
             if (_memoryCache.TryGetValue(key, out result)) return result;
 
             result = await _catHttpClient.Get(req);

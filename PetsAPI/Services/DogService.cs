@@ -32,6 +32,7 @@ namespace PetsAPI.Services
             IEnumerable<DogDetails> result;
             var key = new { req.has_breeds, req.breed_id, req.Limit, req.Page }.GetHashCode();
 
+            //Added cache set for 10mins
             if (_memoryCache.TryGetValue(key, out result)) return result;
 
             result = await _dogHttpClient.Get(req);

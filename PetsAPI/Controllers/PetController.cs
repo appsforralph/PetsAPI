@@ -29,6 +29,7 @@ namespace PetsAPI.Controllers
         public async Task<BaseResponse<IEnumerable<PetDetails>>> Get([FromQuery] BaseRequest req)
         {
             var pets = await _petService.Get(req);
+            //This is for us to monitor or check if there are next pages for the pagination
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pets.Item2));
 
             var response = new BaseResponse<IEnumerable<PetDetails>>()
@@ -47,6 +48,7 @@ namespace PetsAPI.Controllers
         public async Task<BaseResponse<IEnumerable<Image>>> GetBreedImages(string breed_id, [FromQuery] BaseRequest req)
         {
             var pets = await _petService.GetImageList(breed_id, req);
+            //This is for us to monitor or check if there are next pages for the pagination
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pets.Item2));
 
             var response = new BaseResponse<IEnumerable<Image>>()
@@ -64,6 +66,7 @@ namespace PetsAPI.Controllers
         public async Task<BaseResponse<IEnumerable<Image>>> GetImages([FromQuery] BaseRequest req)
         {
             var pets = await _petService.GetImageList(string.Empty,req);
+            //This is for us to monitor or check if there are next pages for the pagination
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(pets.Item2));
 
             var response = new BaseResponse<IEnumerable<Image>>()

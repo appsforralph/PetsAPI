@@ -42,8 +42,9 @@ namespace PetsAPI.Services
             var pets = new List<PetDetails>(dogMap.Concat(catMap)).OrderBy(p => p.name);
 
             var paginationMetadata = new PaginationMetadata(pets.Count(), req.Page, req.Limit);
+            //This is for us to monitor or check if there are next pages for the pagination
 
-
+            //Only select the data that is selected via page and limit
             var filteredPets = pets
                 .Skip((req.Page - 1) * req.Limit)
                 .Take(req.Limit);
