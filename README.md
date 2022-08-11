@@ -49,6 +49,8 @@ Alter first the apiKeys needed. It is located in the appsetting.json
 $ dotnet build --configuration Release
 $ dotnet run --project ./PetsAPI/PetsAPI.csproj --urls=https://localhost:44301/
 ```
+sample output via command line
+![image](https://user-images.githubusercontent.com/30335870/184070818-1ff79a87-8c7d-4106-be44-891ecfff55b0.png)
 
 #### Run via Visual Studio UI
 On running it via Visual Studio UI, simply click the IIS run button
